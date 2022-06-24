@@ -20,22 +20,20 @@ print(zmq.pyzmq_version())
 port = "5556"
 context = zmq.Context()
 socket = context.socket(zmq.PAIR)
-socket.bind("tcp://*:%s" % port)
+socket.bind("tcp://127.0.0.1:%s" % port)
 
 #---- Getting Data from JSON file-------
-mssgs = open('mssgs.json')
-JSON_mssgs=mssgs
-# returns a dictionary 
-data = json.load(mssgs)
-# Iterating through the list
-for i in data["messages"]:
-    print(i)
-mssgs.close()
+# JSON string to converts it into a dictionary.
+with open('mssgs.json') as json_file:
+ mssgs=json.load(json_file) 
 
-#---- send hello world msg to client
+print(type(mssgs))
+ 
+
+#---- send JSON data to client msg to client
 
 while True:
-    socket.send_string('Hello Im server')
+    socket.send_json(mssgs)
     msg = socket.recv()
     print (msg)
     time.sleep(1)
