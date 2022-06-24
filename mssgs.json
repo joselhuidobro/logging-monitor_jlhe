@@ -1,0 +1,26 @@
+
+{
+        
+ "messages":[
+
+           {
+            "module": "evse", "timestamp": "2021-08-31T16:48:48.651504",
+            "state": "idle", "log-stream": "stderr", "log-message": "Somethinghappened."
+           },
+           {
+             "module": "ocpp", "timestamp": "2021-08-31T16:48:48.867408",
+             "state": "initializing", "log-stream":"stderr", "log-message": "Something happened."
+           },
+           {
+             "module": "evse","timestamp": "2021-08-31T16:48:49.027570", "state": "initializing",
+             "log-stream": "stderr", "log-message": "Something happened."
+           },
+           {
+           "module": "ocpp", "timestamp": "2021-08-31T16:48:49.419006",
+           "state": "idle", "log-stream": "stdout", "log-message": "Somethinghappened."
+           } 
+  ]
+}
+
+
+    
