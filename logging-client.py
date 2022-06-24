@@ -1,12 +1,17 @@
 import zmq
 import time
 import logging
+import json
 
 port = "5556"
 context = zmq.Context()
 socket = context.socket(zmq.PAIR)
 socket.connect("tcp://localhost:%s" % port)
 
+logger = logging.getLogger('__name__')#'__name__'
+logging.basicConfig( filename="monitor.log",  format='%(asctime)s - %(message)s', level=logging.DEBUG)
+logger.debug('Client - Started')
+logger.info('Server must be started before running this script')
 
 def recieved():
     msg = socket.recv()
@@ -14,38 +19,28 @@ def recieved():
     time.sleep(1)
     return(msg)
 
-
- 
-
-
-if __name__ == '__main__':
-    logger = logging.getLogger()#'__name__'
-    logging.basicConfig( filename="monitor.log",  format='%(asctime)s - %(message)s', level=logging.DEBUG)
-  #  logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.ERROR)
+def log_function(module,timestamp,state,log_stream,log_message):
     
-    logging.info('Client logged in')
-    logging.warning('Server must be started before running this script')
-    # Create handlers
-    #stream_handler = logging.StreamHandler()
-    #file_handler = logging.FileHandler('msg.log')
-
-    #LEVELS
-    #stream_handler.setLevel(logging.WARNING)
-    #file_handler.setLevel(logging.ERROR)
-
-    #FORMAT
+    logger.info("modulo es ({0}, {1}, {2}, {3} , {4})".format(module,timestamp,state,log_stream,log_message))
  
-    #file_format =logging.Formatter('%(asctime)s - %(message)s')
-
-    #logger.addHandler(stream_handler)
-    #logger.addHandler(file_handler)
-
-   
+ 
+if __name__ == '__main__':
+    #send JSON values to the log function
+    log_func=log_function('a',2,3,4,5)
     try:
        while True:
-     #logger.warning('Protocol problem: %s', 'connection reset', extra=connect)
          data = recieved()
-         print (data)
+         json_object = json.loads(data)
+         dict=json_object['messages']
+         print(dict,type(dict))
+         print(dict[1])
+         
+        # print(json_object['messages']) 
+       
+         #print(json_object,type(json_object))
+         
+         
+      
     except Exception as e:
          logging.exception("Exception occurred")
   
