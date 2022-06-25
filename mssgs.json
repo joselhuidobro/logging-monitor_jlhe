@@ -3,8 +3,8 @@
  "messages":[
 
            {
-            "module": "2", "timestamp": "3",
-            "state": "3", "log-stream": "5", "log-message": "Somethinghappened."
+            "module": "evse", "timestamp": "2021-08-31T16:48:48.651504",
+            "state": "idle", "log-stream": "stderr", "log-message": "Somethinghappened."
            },
            {
              "module": "ocpp", "timestamp": "2021-08-31T16:48:48.867408",
