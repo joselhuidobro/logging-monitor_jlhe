@@ -19,11 +19,11 @@ socket = context.socket(zmq.PAIR)
 socket.bind("tcp://127.0.0.1:%s" % port)
 
 #---- Getting Data from JSON file--------------------
-      # JSON string to converts it into a dictionary.
+      
 with open('mssgs.json') as json_file:
  mssgs=json.load(json_file) 
 
-#---- send JSON data to client msg to client---------
+#---- Send JSON data to client using socket ---------
 while True:
     socket.send_json(mssgs)
     msg = socket.recv()
