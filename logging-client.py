@@ -48,7 +48,6 @@ if __name__ == '__main__':
             print("module:", module)
             print("state:", state)
             print("timestamp:", timestamp)
-            
             #send JSON values that now are STRINGS to the log function
             log_func=log_function(module,timestamp,state,log_stream,log_message)
                  
